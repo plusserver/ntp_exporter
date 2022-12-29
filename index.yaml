@@ -2,6 +2,14 @@ apiVersion: v1
 entries:
   ntp-exporter:
   - apiVersion: v1
+    created: "2022-12-29T13:49:31.281011498Z"
+    description: A Helm chart for the SAP ntp_exporter
+    digest: 1d2676baa6914471b40ae87b0907805939bbfb260a1043d205811a2b55a053ed
+    name: ntp-exporter
+    urls:
+    - https://github.com/plusserver/ntp_exporter/releases/download/ntp-exporter-0.1.2/ntp-exporter-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
     created: "2022-12-29T13:29:06.12733225Z"
     description: A Helm chart for the SAP ntp_exporter
     digest: 389de011c3544649356c36efbf575a7414d623c0d30d1bdb6f3df11ddc6ed786
@@ -17,4 +25,4 @@ entries:
     urls:
     - https://github.com/plusserver/ntp_exporter/releases/download/ntp-exporter-0.1.0/ntp-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-29T13:29:06.12733915Z"
+generated: "2022-12-29T13:49:31.281024998Z"
