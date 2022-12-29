@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ntp-exporter
+  namespace: {{ .Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    app.kubernetes.io/component: metrics
+    app.kubernetes.io/name: "{{ .Release.Name }}"
+    app.kubernetes.io/version: {{ .Chart.Version }}
+spec:
+  selector:
+    matchLabels:
+      app: ntp-exporter
+      role: metrics-exporter
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+      release: "{{ .Release.Name }}"
+      heritage: "{{ .Release.Service }}"
+  template:
+    metadata:
+      labels:
+        app: ntp-exporter
+        role: metrics-exporter
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: ntp-exporter
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command:
+        - /usr/bin/ntp_exporter
+        - -ntp.source={{ .Values.ntp.source }}
+        - -ntp.measurement-duration={{ .Values.ntp.measurementDuration }}
+        - -ntp.protocol-version={{ .Values.ntp.protocolVersion }}
+        - -ntp.server={{ .Values.ntp.server }}
+        ports:
+        - name: port
+          containerPort: 9559
+        {{- if .Values.resources }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        {{- end }}
+        {{- if .Values.securityContext }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
+        {{- end }}
