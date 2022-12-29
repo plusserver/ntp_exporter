@@ -3,6 +3,12 @@ This repository contains a HELM chart to quickly get up and running with the [SA
 
 For further documentation, please see the [README](https://github.com/sapcc/ntp_exporter/blob/master/README.md) of the original repository.
 
+You can use this HELM chart by running:
+~~~bash
+helm repo add ntp_exporter https://plusserver.github.io/ntp_exporter
+helm install ntp-exporter ntp_exporter/ntp-exporter
+~~~
+
 Example scrape config:
 ~~~yaml
 - job_name: 'ntp-exporter'
@@ -26,3 +32,4 @@ Example scrape config:
       replacement: $1
       action: replace
 ~~~
+
