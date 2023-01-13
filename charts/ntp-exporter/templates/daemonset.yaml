@@ -15,17 +15,11 @@ spec:
     matchLabels:
       app: ntp-exporter
       role: metrics-exporter
-      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-      release: "{{ .Release.Name }}"
-      heritage: "{{ .Release.Service }}"
   template:
     metadata:
       labels:
         app: ntp-exporter
         role: metrics-exporter
-        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-        release: "{{ .Release.Name }}"
-        heritage: "{{ .Release.Service }}"
     spec:
       tolerations:
       - key: node-role.kubernetes.io/control-plane
