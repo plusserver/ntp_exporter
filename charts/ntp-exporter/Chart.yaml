@@ -1,4 +1,4 @@
 apiVersion: v1
 description: A Helm chart for the SAP ntp_exporter
 name: ntp-exporter
-version: 0.1.5
+version: 0.1.6
