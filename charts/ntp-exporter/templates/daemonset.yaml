@@ -64,4 +64,5 @@ spec:
           httpGet:
             path: /metrics
             port: 9559
-          periodSeconds: 5
+          periodSeconds: 60
+          timeoutSeconds: 45
